@@ -1,0 +1,18 @@
+<div class="p-5">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let patient of patients$">
+      <th scope="row">{{patient.id}}</th>
+      <td>{{patient.firstName}}</td>
+      <td>{{patient.lastName}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

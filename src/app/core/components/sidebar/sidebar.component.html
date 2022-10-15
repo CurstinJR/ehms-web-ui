@@ -1,0 +1,20 @@
+<div class="sidebar p-4 bg-white d-inline-flex flex-column h-100 position-fixed top-0 start-0 overflow-hidden">
+  <!-- Heading -->
+  <div class="pb-5">
+    <h2><span class="text-primary">E</span>-HMS</h2>
+  </div>
+  <!-- Links -->
+  <div class="pt-5 d-flex flex-column gap-3">
+    <a *ngFor="let menuItem of menuItems" class="menu-item rounded p-2" routerLink="/{{menuItem.routerLink}}"
+       routerLinkActive="text-bg-primary bg-gradient" [routerLinkActiveOptions]="{exact: true}">
+      <div class="d-flex gap-2">
+        <!-- Icon -->
+        <fa-icon [icon]="menuItem.icon" [size]="iconSize"></fa-icon>
+        <!-- Name -->
+        <span class="fs-4">
+          {{menuItem.name}}
+        </span>
+      </div>
+    </a>
+  </div>
+</div>
