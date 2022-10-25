@@ -7,7 +7,7 @@ import {VitalsService} from "../../services/vitals.service";
 import {PatientModel} from "../../models/patient.model";
 
 @Component({
-  selector: 'app-patients-add-edit',
+  selector: 'app-patients-view-details',
   templateUrl: './patients-view-details.component.html',
   styleUrls: ['./patients-view-details.component.css']
 })

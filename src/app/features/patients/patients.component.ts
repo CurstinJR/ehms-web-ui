@@ -4,8 +4,6 @@ import {PatientModel} from "../models/patient.model";
 import {AppIcon} from "../../core/_models/app-icon.model";
 import {faEye, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
-type PatientTableConfig = { header: string }[];
-
 @Component({
   selector: 'app-patients',
   templateUrl: './patients.component.html',
@@ -14,11 +12,6 @@ type PatientTableConfig = { header: string }[];
 export class PatientsComponent implements OnInit {
 
   patients$: PatientModel[];
-  patientTableConfig: PatientTableConfig = [
-    {
-      header: "#"
-    }
-  ]
   editIcon: AppIcon = {
     icon: faPenToSquare,
     size: "2x"
