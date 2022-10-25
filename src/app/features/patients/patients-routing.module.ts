@@ -11,7 +11,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "add",
+    path: ":id",
     component: PatientsViewDetailsComponent
   }
 ];
