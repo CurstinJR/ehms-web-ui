@@ -5,7 +5,6 @@ import {Observable} from "rxjs";
 import {AppointmentModel} from "../models/appointment.model";
 
 
-
 @Injectable({
   providedIn: 'root'
 })

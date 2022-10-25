@@ -1,50 +1,42 @@
-<div class="modal fade" id="addPatientModal" tabindex="-1" aria-hidden="true">
+<div aria-hidden="true" class="modal fade" id="addPatientModal" tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Patient</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
       </div>
       <div class="modal-body">
-        <!--TODO: formGroup and ngSubmit (look at the .ts as well)-->
-        <form [formGroup]="addPatientForm" (ngSubmit)="onSubmit()" class="row g-3">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addPatientForm" class="row g-3">
           <div class="col-md-12">
-            <label for="firstName" class="form-label">First Name</label>
-            <!--TODO: formControlName-->
-            <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-control" formControlName="firstName" id="firstName" type="text">
           </div>
           <div class="col-md-12">
-            <label for="lastName" class="form-label">Last Name</label>
-            <!--TODO: formControlName-->
-            <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-control" formControlName="lastName" id="lastName" type="text">
           </div>
-          <!--TODO: formGroupName only if nested fields-->
-          <div formGroupName="vitals" class="row">
+          <div class="row" formGroupName="vitals">
             <h5 class="pt-2">Vitals</h5>
             <div class="col-md-6">
-              <label for="weight" class="form-label">Weight</label>
-              <!--TODO: formControlName-->
-              <input type="text" class="form-control" id="weight" formControlName="weight">
+              <label class="form-label" for="weight">Weight</label>
+              <input class="form-control" formControlName="weight" id="weight" type="text">
             </div>
             <div class="col-md-6">
-              <label for="height" class="form-label">Height</label>
-              <!--TODO: formControlName-->
-              <input type="text" class="form-control" id="height" formControlName="height">
+              <label class="form-label" for="height">Height</label>
+              <input class="form-control" formControlName="height" id="height" type="text">
             </div>
             <div class="col-md-6">
-              <label for="bloodPressure" class="form-label">Blood Pressure</label>
-              <!--TODO: formControlName-->
-              <input type="text" class="form-control" id="bloodPressure" formControlName="bloodPressure">
+              <label class="form-label" for="bloodPressure">Blood Pressure</label>
+              <input class="form-control" formControlName="bloodPressure" id="bloodPressure" type="text">
             </div>
             <div class="col-md-6">
-              <label for="temperature" class="form-label">Temperature</label>
-              <!--TODO: formControlName-->
-              <input type="text" class="form-control" id="temperature" formControlName="temperature">
+              <label class="form-label" for="temperature">Temperature</label>
+              <input class="form-control" formControlName="temperature" id="temperature" type="text">
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" [disabled]="!addPatientForm.valid">Save changes</button>
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button [disabled]="!addPatientForm.valid" class="btn btn-primary" type="submit">Save changes</button>
           </div>
         </form>
       </div>

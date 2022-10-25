@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { RolesRoutingModule } from './roles-routing.module';
-import { RolesComponent } from './roles.component';
+import {RolesRoutingModule} from './roles-routing.module';
+import {RolesComponent} from './roles.component';
 
 
 @NgModule({
@@ -14,4 +14,5 @@ import { RolesComponent } from './roles.component';
     RolesRoutingModule
   ]
 })
-export class RolesModule { }
+export class RolesModule {
+}

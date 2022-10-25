@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AppointmentsService} from "../services/appointments.service";
 import {AppointmentModel} from "../models/appointment.model";
-import {PatientModel} from "../models/patient.model";
-import {PatientsService} from "../services/patients.service";
 
 
 @Component({
@@ -11,15 +9,14 @@ import {PatientsService} from "../services/patients.service";
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent implements OnInit {
-  appointments$: AppointmentModel[];
-  patients$: PatientModel[] ;
 
-  constructor(private appointmentsService: AppointmentsService,
-              private patientsService: PatientsService) { }
+  appointments$: AppointmentModel[];
+
+  constructor(private appointmentsService: AppointmentsService) {
+  }
 
   ngOnInit(): void {
     this.getAllAppointments();
-    this.getAllPatients();
   }
 
   getAllAppointments() {
@@ -29,13 +26,4 @@ export class AppointmentsComponent implements OnInit {
         this.appointments$ = data;
       });
   }
-  getAllPatients() {
-    this.patientsService
-      .getAll()
-      .subscribe(data => {
-        this.patients$ = data;
-      });
-  }
-
-
 }

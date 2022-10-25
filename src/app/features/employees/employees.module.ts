@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { EmployeesRoutingModule } from './employees-routing.module';
+import {EmployeesRoutingModule} from './employees-routing.module';
 import {EmployeesComponent} from "./employees.component";
 
 
@@ -14,4 +14,5 @@ import {EmployeesComponent} from "./employees.component";
     EmployeesRoutingModule
   ]
 })
-export class EmployeesModule { }
+export class EmployeesModule {
+}
