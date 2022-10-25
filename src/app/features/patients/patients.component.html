@@ -32,7 +32,9 @@
         </td>
         <td>
           <!--View Icon-->
-          <fa-icon [icon]="viewIcon.icon" [size]="viewIcon.size" class="btn text-secondary"></fa-icon>
+          <a [routerLink]="['/patients', patient.id]">
+            <fa-icon [icon]="viewIcon.icon" [size]="viewIcon.size" class="btn text-secondary"></fa-icon>
+          </a>
         </td>
       </div>
     </tr>

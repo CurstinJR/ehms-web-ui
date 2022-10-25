@@ -7,11 +7,11 @@
       <form>
         <div class="mb-3">
           <label class="form-label" for="firstName">First Name</label>
-          <input class="form-control" id="firstName" type="text">
+          <input class="form-control" id="firstName" type="text" value="{{vitals.patient.firstName}}" disabled />
         </div>
         <div class="mb-3">
           <label class="form-label" for="lastName">Last Name</label>
-          <input class="form-control" id="lastName" type="text">
+          <input class="form-control" id="lastName" type="text" value="{{vitals.patient.lastName}}" disabled />
         </div>
       </form>
     </div>
@@ -19,11 +19,33 @@
     <div>
       <p class="fs-3 fw-semibold">Patient Vitals</p>
       <div class="row">
-        <div *ngFor="let vitalConfig of vitalConfigs" class="col-6">
-          <fa-icon [icon]="vitalConfig.icon.icon" [size]="vitalConfig.icon.size"></fa-icon>
+        <div class="col-6">
+          <!--TODO: Make a component-->
+          <fa-icon [icon]="icon.icon" [size]="icon.size"></fa-icon>
           <div class="d-flex flex-column">
-            <small>{{vitalConfig.name}}</small>
-            <span>{{vitalConfig.stat}}</span>
+            <small>Weight</small>
+            <span>{{vitals.weight}}</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <fa-icon [icon]="icon.icon" [size]="icon.size"></fa-icon>
+          <div class="d-flex flex-column">
+            <small>Height</small>
+            <span>{{vitals.height}}</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <fa-icon [icon]="icon.icon" [size]="icon.size"></fa-icon>
+          <div class="d-flex flex-column">
+            <small>Blood Pressure</small>
+            <span>{{vitals.bloodPressure}}</span>
+          </div>
+        </div>
+        <div class="col-6">
+          <fa-icon [icon]="icon.icon" [size]="icon.size"></fa-icon>
+          <div class="d-flex flex-column">
+            <small>Temperature</small>
+            <span>{{vitals.temperature}}</span>
           </div>
         </div>
       </div>

@@ -18,4 +18,8 @@ export class PatientsService {
   getAll(): Observable<PatientModel[]> {
     return this.http.get<PatientModel[]>(`${this.api}/patients`);
   }
+
+  getById(id: number) {
+    return this.http.get<PatientModel>(`${this.api}/patients/${id}`);
+  }
 }
