@@ -1,0 +1,43 @@
+<div class="d-flex p-5">
+  <!--Patient Info Section-->
+  <div class="shadow bg-body rounded p-5">
+    <!--Patient Details-->
+    <div>
+      <p class="fs-3 fw-semibold">Patient Details</p>
+      <form>
+        <div class="mb-3">
+          <label class="form-label" for="firstName">First Name</label>
+          <input class="form-control" id="firstName" type="text">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="lastName">Last Name</label>
+          <input class="form-control" id="lastName" type="text">
+        </div>
+      </form>
+    </div>
+    <!--Patient Vitals-->
+    <div>
+      <p class="fs-3 fw-semibold">Patient Vitals</p>
+      <div class="row">
+        <div *ngFor="let vitalConfig of vitalConfigs" class="col-6">
+          <fa-icon [icon]="vitalConfig.icon.icon" [size]="vitalConfig.icon.size"></fa-icon>
+          <div class="d-flex flex-column">
+            <small>{{vitalConfig.name}}</small>
+            <span>{{vitalConfig.stat}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Patient Diagnosis & Prescription-->
+  <div class="d-flex flex-column">
+    <!--Patient Diagnosis-->
+    <div>
+
+    </div>
+    <!--Patient Prescription-->
+    <div>
+
+    </div>
+  </div>
+</div>

@@ -1,6 +1,13 @@
 import {MenuItem} from "../../_models/menu-item.model";
 import {Component, OnInit} from "@angular/core";
-import {faHospitalUser, faCalendarCheck, faGrip, faUserDoctor, faWallet} from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarCheck,
+  faGrip,
+  faHospitalUser,
+  faImagePortrait,
+  faUserDoctor,
+  faWallet
+} from "@fortawesome/free-solid-svg-icons";
 import {SizeProp} from "@fortawesome/fontawesome-svg-core";
 
 @Component({
@@ -14,28 +21,27 @@ export class SidebarComponent implements OnInit {
   menuItems: MenuItem[] = [
     {
       icon: faGrip,
-      name: "Dashboard",
-      routerLink: ""
+      name: "Dashboard"
     },
     {
       icon: faHospitalUser,
-      name: "Patients",
-      routerLink: "patients"
+      name: "Patients"
     },
     {
       icon: faUserDoctor,
-      name: "Doctors",
-      routerLink: "doctors"
+      name: "Employees"
     },
     {
       icon: faCalendarCheck,
-      name: "Appointments",
-      routerLink: "appointments"
+      name: "Appointments"
     },
     {
       icon: faWallet,
-      name: "Bills",
-      routerLink: "bills"
+      name: "Bills"
+    },
+    {
+      icon: faImagePortrait,
+      name: "Roles"
     },
   ];
 

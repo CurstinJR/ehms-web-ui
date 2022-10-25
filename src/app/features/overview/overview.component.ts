@@ -3,7 +3,7 @@ import {Component, OnInit} from '@angular/core';
 type Feature = { name: string };
 
 @Component({
-  selector: 'app-overview',
+  selector: 'app-dashboard',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
@@ -14,13 +14,16 @@ export class OverviewComponent implements OnInit {
       name: "Patients"
     },
     {
-      name: "Doctors"
+      name: "Employees"
     },
     {
       name: "Appointments"
     },
     {
       name: "Bills"
+    },
+    {
+      name: "Roles"
     }
   ];
 

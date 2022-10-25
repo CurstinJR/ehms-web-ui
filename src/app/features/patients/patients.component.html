@@ -1,7 +1,17 @@
-<div class="p-5">
-  <table class="table">
+<div class="shadow bg-body rounded p-5 m-5">
+  <div class="d-flex justify-content-between">
+    <p class="fs-3 fw-semibold">Patients</p>
+    <div>
+      <button class="btn btn-success px-4 mx-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Add</button>
+      <button class="btn btn-danger px-4" data-bs-target="#deleteModal" data-bs-toggle="modal">Delete</button>
+    </div>
+  </div>
+  <table class="table table-borderless table-sm">
     <thead>
     <tr>
+      <th scope="col">
+        <input class="form-check-input" id="selectAllCheckbox" type="checkbox" value="">
+      </th>
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
@@ -9,10 +19,76 @@
     </thead>
     <tbody>
     <tr *ngFor="let patient of patients$">
+      <div>
+        <input class="form-check-input" id="selectCheckbox" type="checkbox" value="">
+      </div>
       <th scope="row">{{patient.id}}</th>
       <td>{{patient.firstName}}</td>
       <td>{{patient.lastName}}</td>
+      <div>
+        <td>
+          <!--Edit Icon-->
+          <fa-icon [icon]="editIcon.icon" [size]="editIcon.size" class="btn text-secondary"></fa-icon>
+        </td>
+        <td>
+          <!--View Icon-->
+          <fa-icon [icon]="viewIcon.icon" [size]="viewIcon.size" class="btn text-secondary"></fa-icon>
+        </td>
+      </div>
     </tr>
     </tbody>
   </table>
+</div>
+
+<!--Delete Modal-->
+<div aria-hidden="true" aria-labelledby="deleteModalLabel" class="modal fade" id="deleteModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Patient</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <p>Patient to be deleted.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+        <button class="btn btn-danger" type="button">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="time" class="form-control" id="time">
+          </div>
+          <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date">
+          </div>
+          <div class="mb-3">
+            <label for="patient" class="form-label">Patient</label>
+            <select class="form-select" aria-label="Default select example" id="patient">
+              <option *ngFor="let patient of patients$">{{patient.firstName}}</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
 </div>

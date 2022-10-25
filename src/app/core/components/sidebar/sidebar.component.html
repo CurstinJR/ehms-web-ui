@@ -5,8 +5,11 @@
   </div>
   <!-- Links -->
   <div class="pt-5 d-flex flex-column gap-3">
-    <a *ngFor="let menuItem of menuItems" class="menu-item rounded p-2" routerLink="/{{menuItem.routerLink}}"
-       routerLinkActive="text-bg-primary bg-gradient" [routerLinkActiveOptions]="{exact: true}">
+    <a *ngFor="let menuItem of menuItems"
+       [routerLinkActiveOptions]="{exact: false}"
+       class="menu-item rounded p-2"
+       routerLink="/{{menuItem.name.toLowerCase()}}"
+       routerLinkActive="text-bg-primary bg-gradient">
       <div class="d-flex gap-2">
         <!-- Icon -->
         <fa-icon [icon]="menuItem.icon" [size]="iconSize"></fa-icon>

@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card">
+    <h4 class="card-header">Angular 9 Basic Authentication Example</h4>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input [ngClass]="{ 'is-invalid': isSubmitted && formControls['email'].errors }" class="form-control" formControlName="email"
+                 id="email" type="text" />
+          <div *ngIf="isSubmitted && formControls['email'].errors" class="invalid-feedback">
+            <div *ngIf="formControls['email'].errors['required']">Email is required</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input [ngClass]="{ 'is-invalid': isSubmitted && formControls['password'].errors }" class="form-control" formControlName="password"
+                 id="password" type="password" />
+          <div *ngIf="isSubmitted && formControls['password'].errors" class="invalid-feedback">
+            <div *ngIf="formControls['password'].errors['required']">Password is required</div>
+          </div>
+        </div>
+        <button [disabled]="isLoading" class="btn btn-primary">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-1"></span>
+          Login
+        </button>
+        <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+      </form>
+    </div>
+  </div>
+</div>

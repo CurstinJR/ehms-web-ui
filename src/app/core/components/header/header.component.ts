@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {faCircleUser} from "@fortawesome/free-solid-svg-icons";
-import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
-import {SizeProp} from "@fortawesome/fontawesome-svg-core";
+import {AppIcon} from "../../_models/app-icon.model";
+import {AuthenticationService} from "../../_services/authentication.service";
 
 @Component({
   selector: 'app-header',
@@ -10,15 +10,24 @@ import {SizeProp} from "@fortawesome/fontawesome-svg-core";
 })
 export class HeaderComponent implements OnInit {
 
-  profile: { icon: IconDefinition, size: SizeProp } = {
+  profile: AppIcon = {
     icon: faCircleUser,
     size: "3x"
   }
 
-  constructor() {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
+  get isUserLoggedIn() {
+    return this.authenticationService.currentUserValue;
+  }
+
+
   ngOnInit(): void {
+  }
+
+  public onLogout() {
+    this.authenticationService.logout();
   }
 
 }
