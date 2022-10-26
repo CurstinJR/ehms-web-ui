@@ -24,6 +24,9 @@ export class OverviewComponent implements OnInit {
     },
     {
       name: "Roles"
+    },
+    {
+      name: "Prescription"
     }
   ];
 

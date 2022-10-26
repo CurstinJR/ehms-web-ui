@@ -43,6 +43,10 @@ export class SidebarComponent implements OnInit {
       icon: faImagePortrait,
       name: "Roles"
     },
+    {
+      icon: faImagePortrait,
+      name: "Prescription"
+    },
   ];
 
   constructor() {

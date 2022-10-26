@@ -9,6 +9,7 @@ import {AppointmentsModule} from "../../../features/appointments/appointments.mo
 import {EmployeesModule} from "../../../features/employees/employees.module";
 import {BillsModule} from "../../../features/bills/bills.module";
 import {RolesModule} from "../../../features/roles/roles.module";
+import {PrescriptionModule} from "../../../features/prescription/prescription.module";
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path: "employees", loadChildren: () => EmployeesModule},
       {path: "bills", loadChildren: () => BillsModule},
       {path: "roles", loadChildren: () => RolesModule},
+      {path: "prescription", loadChildren: () => PrescriptionModule},
     ]
   },
   {
