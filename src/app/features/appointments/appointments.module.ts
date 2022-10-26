@@ -5,7 +5,7 @@ import {AppointmentsRoutingModule} from './appointments-routing.module';
 import {AppointmentsComponent} from "./appointments.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {AppointmentAddModalComponent} from './appointment-add-modal/appointment-add-modal.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -13,12 +13,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     AppointmentsComponent,
     AppointmentAddModalComponent
   ],
-  imports: [
-    CommonModule,
-    AppointmentsRoutingModule,
-    FontAwesomeModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        AppointmentsRoutingModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class AppointmentsModule {
 }

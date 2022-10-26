@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AppointmentsService} from "../services/appointments.service";
 import {AppointmentModel} from "../models/appointment.model";
+import {PatientModel} from "../models/patient.model";
 
 
 @Component({
@@ -11,8 +12,10 @@ import {AppointmentModel} from "../models/appointment.model";
 export class AppointmentsComponent implements OnInit {
 
   appointments$: AppointmentModel[];
+  appointment: AppointmentModel = new AppointmentModel();
 
   constructor(private appointmentsService: AppointmentsService) {
+    this.appointment.patient = new PatientModel();
   }
 
   ngOnInit(): void {

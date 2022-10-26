@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {PatientModel} from "../../models/patient.model";
 import {PatientsService} from "../../services/patients.service";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, NgForm, Validators} from "@angular/forms";
+import {AppointmentsService} from "../../services/appointments.service";
 
 @Component({
   selector: 'app-appointment-add-modal',
@@ -18,7 +19,8 @@ export class AppointmentAddModalComponent implements OnInit {
   });
 
   constructor(private formBuilder: FormBuilder,
-              private patientsService: PatientsService) {
+              private patientsService: PatientsService,
+              private appointmentService: AppointmentsService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +35,7 @@ export class AppointmentAddModalComponent implements OnInit {
       });
   }
 
-  onSubmit() {
-    console.log(this.addAppointmentForm.value);
+  onSubmit(addAppointmentForm: NgForm) {
+    console.log(addAppointmentForm.value);
   }
 }
