@@ -22,4 +22,16 @@ export class PatientsService {
   getById(id: number) {
     return this.http.get<PatientModel>(`${this.api}/patients/${id}`);
   }
+
+  add(patient: PatientModel) {
+    return this.http.post<PatientModel>(`${this.api}/patients`, patient);
+  }
+
+  updateById(id: number, patient: PatientModel) {
+    return this.http.put<PatientModel>(`${this.api}/patients/${id}`, patient)
+  }
+
+  deleteById(id: number) {
+    return this.http.delete<PatientModel>(`${this.api}/patients/${id}`)
+  }
 }

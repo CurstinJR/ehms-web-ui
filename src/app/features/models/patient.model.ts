@@ -1,5 +1,8 @@
+import {VitalModel} from "./vital.model";
+
 export class PatientModel {
-  id?: number;
+  id: number;
   firstName: string;
   lastName: string;
+  vitals: VitalModel;
 }

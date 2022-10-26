@@ -12,7 +12,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [
     PatientsComponent,
     PatientsViewDetailsComponent,
-    PatientsAddModalComponent
+    PatientsAddModalComponent,
   ],
   imports: [
     CommonModule,

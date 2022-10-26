@@ -3,26 +3,25 @@
     <p class="fs-3 fw-semibold">Patients</p>
     <div>
       <button class="btn btn-success px-4 mx-3" data-bs-target="#addPatientModal" data-bs-toggle="modal">
-        Add
+        Add Patient
       </button>
-      <button class="btn btn-danger px-4" data-bs-target="#deleteModal" data-bs-toggle="#deleteModal">Delete</button>
+      <button class="btn btn-danger px-4" data-bs-target="#deleteModal" data-bs-toggle="modal">Delete</button>
     </div>
   </div>
   <table class="table table-borderless table-sm">
     <thead>
     <tr>
-      <th scope="col">
-        <input class="form-check-input" id="selectAllCheckbox" type="checkbox" value="">
-      </th>
+      <th scope="col"></th>
       <th scope="col">#</th>
       <th scope="col">First</th>
       <th scope="col">Last</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let patient of patients$">
+    <tr *ngFor="let patient of patients">
       <div>
-        <input class="form-check-input" id="selectCheckbox" type="checkbox" value="">
+        <input (change)="getPatient(patient)" [value]="patient.id" class="form-check-input" id="selectCheckbox"
+               type="checkbox">
       </div>
       <th scope="row">{{patient.id}}</th>
       <td>{{patient.firstName}}</td>
@@ -30,7 +29,9 @@
       <div>
         <td>
           <!--Edit Icon-->
-          <fa-icon [icon]="editIcon.icon" [size]="editIcon.size" class="btn text-secondary"></fa-icon>
+          <fa-icon (click)="populatePatient(patient)" [icon]="editIcon.icon" [size]="editIcon.size"
+                   class="btn text-secondary" data-bs-target="#editPatientModal" data-bs-toggle="modal">
+          </fa-icon>
         </td>
         <td>
           <!--View Icon-->
@@ -49,7 +50,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Patient</h1>
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Patient {{patient.firstName}}</h1>
         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
       </div>
       <div class="modal-body">
@@ -57,11 +58,58 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-        <button class="btn btn-danger" type="button">Delete</button>
+        <button (click)="deletePatient()" class="btn btn-danger" type="button">Delete</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Add Modal -->
-<app-patients-add-modal></app-patients-add-modal>
+<!-- Add Patients Modal -->
+<app-patient-add-modal></app-patient-add-modal>
+
+<!-- Edit Patient Modal -->
+<div aria-hidden="true" class="modal fade" id="editPatientModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Patient</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onUpdate()" [formGroup]="editPatientForm" class="row g-3">
+          <div class="col-md-12">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-control" formControlName="firstName" id="firstName" type="text">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-control" formControlName="lastName" id="lastName" type="text">
+          </div>
+          <div class="row" formGroupName="vitals">
+            <h5 class="pt-2">Vitals</h5>
+            <div class="col-md-6">
+              <label class="form-label" for="weight">Weight</label>
+              <input class="form-control" formControlName="weight" id="weight" type="text">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="height">Height</label>
+              <input class="form-control" formControlName="height" id="height" type="text">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="bloodPressure">Blood Pressure</label>
+              <input class="form-control" formControlName="bloodPressure" id="bloodPressure" type="text">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="temperature">Temperature</label>
+              <input class="form-control" formControlName="temperature" id="temperature" type="text">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button [disabled]="!editPatientForm.valid" class="btn btn-primary" type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
