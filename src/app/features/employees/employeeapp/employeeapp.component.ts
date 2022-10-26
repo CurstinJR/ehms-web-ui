@@ -8,10 +8,10 @@ import { EmployeeService } from './services/employee.service';
   templateUrl: './employeeapp.component.html',
   styleUrls: ['./employeeapp.component.css'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class EmployeeappComponent implements OnInit, AfterViewInit {
   @ViewChild('fileInput') fileInput: any;
   @ViewChild('addEmployeeButton') addEmployeeButton: any;
-  title = 'EmployeeCRUD';
+  title = 'employeeCRUD';
 
   employeeForm: FormGroup;
 
