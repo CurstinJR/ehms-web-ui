@@ -8,7 +8,7 @@ import { Employee } from '../models/employee.model';
 })
 
 export class EmployeesComponent implements OnInit {
-  @Input() employee: Employee;
+  @Input() employee: { firstName: string; lastName: string; contactdetails: string; logindetails: string; userRole: string };
   @Output() onRemoveEmployee = new EventEmitter<number>();
   @Output() onEditEmployee = new EventEmitter<number>();
 
@@ -16,9 +16,9 @@ export class EmployeesComponent implements OnInit {
     this.employee = {
       firstName: '',
       lastName: '',
-      userRole: role,
-      logindetails: LoginCredentials,
-      contactdetails: ContactDetails,
+      userRole:'',
+      logindetails: '',
+      contactdetails: '',
     };
   }
 
