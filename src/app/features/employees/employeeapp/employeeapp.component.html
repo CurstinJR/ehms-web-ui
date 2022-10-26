@@ -1,9 +1,9 @@
 <div class="container-fluid g-0">
 
-  <!-- HEADER -->
+  <!-- Start of HEADER -->
   <app-header></app-header>
 
-  <!-- MAIN CONTENT -->
+  <!-- Start of MAIN CONTENT -->
   <main class="black-borde">
 
     <!-- ADD AND SEARCH EMPLOYEES -->
@@ -21,7 +21,7 @@
 
     </div>
 
-    <!-- AREA TO DISPLAY ALL THE EMPLOYEES -->
+    <!--  DISPLAY ALL THE EMPLOYEES -->
     <div class="employees">
 
       <div class="row mt-5" *ngIf="employees.length == 0">
@@ -70,11 +70,7 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col">
-              <label for="datepicker" class="form-label">Birthdate</label>
-              <input type="date" class="form-control" id="datepicker" formControlName="birthday">
-            </div>
+
             <div class="col">
               <div class="row">
                 <h6 class="text-secondary">Gender</h6>

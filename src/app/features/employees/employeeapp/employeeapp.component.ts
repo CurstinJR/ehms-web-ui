@@ -4,7 +4,7 @@ import { Employee } from './models/employee.model';
 import { EmployeeService } from './services/employee.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-employeeapp',
   templateUrl: './employeeapp.component.html',
   styleUrls: ['./employeeapp.component.css'],
 })
@@ -17,13 +17,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   employees: Employee[];
   employeesToDisplay: Employee[];
-  educationOptions = [
-    '10th pass',
-    'diploma',
-    'graduate',
-    'post graduate',
-    'PhD',
-  ];
+
 
   constructor(
     private fb: FormBuilder,
@@ -38,12 +32,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.employeeForm = this.fb.group({
       firstname: this.fb.control(''),
       lastname: this.fb.control(''),
-      birthday: this.fb.control(''),
       gender: this.fb.control(''),
-      education: this.fb.control('default'),
-      company: this.fb.control(''),
-      jobExperience: this.fb.control(''),
-      salary: this.fb.control(''),
+      branch: this.fb.control(''),
+      role: this.fb.control(''),
+      login: this.fb.control(''),
+      contact: this.fb.control(''),
     });
 
     this.employeeService.getEmployees().subscribe((res) => {
@@ -62,12 +55,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     let employee: Employee = {
       firstname: this.FirstName.value,
       lastname: this.LastName.value,
-      birthdate: this.BirthDay.value,
       gender: this.Gender.value,
-      education: this.educationOptions[parseInt(this.Education.value)],
-      company: this.Company.value,
-      jobExperience: this.JobExperience.value,
-      salary: this.Salary.value,
+      branch: this.Branch.value,
+      role: this.Role.value,
+      login: this.Login.value,
+      contact: this.Contact.value,
       profile: this.fileInput.nativeElement.files[0]?.name,
     };
     this.employeeService.postEmployee(employee).subscribe((res) => {
@@ -99,18 +91,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   setForm(emp: Employee) {
     this.FirstName.setValue(emp.firstname);
     this.LastName.setValue(emp.lastname);
-    this.BirthDay.setValue(emp.birthdate);
     this.Gender.setValue(emp.gender);
-
-    let educationIndex = 0;
-    this.educationOptions.forEach((val, index) => {
-      if (val === emp.education) educationIndex = index;
-    });
-    this.Education.setValue(educationIndex);
-
-    this.Company.setValue(emp.company);
-    this.JobExperience.setValue(emp.jobExperience);
-    this.Salary.setValue(emp.salary);
+    this.Branch.setValue(emp.branch);
+    this.Role.setValue(emp.role);
+    this.Login.setValue(emp.login);
+    this.Contact.setValue(emp.contact);
     this.fileInput.nativeElement.value = '';
   }
 
@@ -132,12 +117,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   clearForm() {
     this.FirstName.setValue('');
     this.LastName.setValue('');
-    this.BirthDay.setValue('');
     this.Gender.setValue('');
-    this.Education.setValue('');
-    this.Company.setValue('');
-    this.JobExperience.setValue('');
-    this.Salary.setValue('');
+    this.Branch.setValue('');
+    this.Role.setValue('');
+    this.Login.setValue('');
+    this.Contact.setValue('');
     this.fileInput.nativeElement.value = '';
   }
 
@@ -147,22 +131,21 @@ export class AppComponent implements OnInit, AfterViewInit {
   public get LastName(): FormControl {
     return this.employeeForm.get('lastname') as FormControl;
   }
-  public get BirthDay(): FormControl {
-    return this.employeeForm.get('birthday') as FormControl;
-  }
+
   public get Gender(): FormControl {
     return this.employeeForm.get('gender') as FormControl;
   }
-  public get Education(): FormControl {
-    return this.employeeForm.get('education') as FormControl;
+
+  public get Branch(): FormControl {
+    return this.employeeForm.get('branch') as FormControl;
   }
-  public get Company(): FormControl {
-    return this.employeeForm.get('company') as FormControl;
+  public get Role(): FormControl {
+    return this.employeeForm.get('role') as FormControl;
   }
-  public get JobExperience(): FormControl {
-    return this.employeeForm.get('jobExperience') as FormControl;
+  public get Login(): FormControl {
+    return this.employeeForm.get('login') as FormControl;
   }
-  public get Salary(): FormControl {
-    return this.employeeForm.get('salary') as FormControl;
+  public get Contact(): FormControl {
+    return this.employeeForm.get('contact') as FormControl;
   }
 }
