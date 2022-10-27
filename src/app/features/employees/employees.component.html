@@ -1,1 +1,103 @@
-<p>employees works!</p>
+<div class="shadow bg-body rounded p-5 m-5">
+  <div class="d-flex justify-content-between">
+    <p class="fs-3 fw-semibold">Employees</p>
+    <div>
+      <button class="btn btn-success px-4 mx-3" data-bs-target="#addEmployeeModal" data-bs-toggle="modal">
+        Add Employee
+      </button>
+      <button class="btn btn-danger px-4" data-bs-target="#deleteEmployeeModal" data-bs-toggle="modal">
+        Delete
+      </button>
+    </div>
+  </div>
+  <table class="table table-borderless table-sm">
+    <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let employee of employees">
+      <div>
+        <input (change)="getEmployee(employee)" [value]="employee.id" class="form-check-input" id="selectCheckbox"
+               type="checkbox">
+      </div>
+      <th scope="row">{{employee.id}}</th>
+      <td>{{employee.firstName}}</td>
+      <td>{{employee.lastName}}</td>
+      <td>{{employee.role.name}}</td>
+      <td>
+        <!--Edit Icon-->
+        <fa-icon (click)="populateEmployee(employee)"
+                 [icon]="editIcon.icon"
+                 [size]="editIcon.size"
+                 class="btn text-secondary"
+                 data-bs-target="#editEmployeeModal"
+                 data-bs-toggle="modal">
+        </fa-icon>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Delete Modal-->
+<div aria-hidden="true" aria-labelledby="deleteModalLabel" class="modal fade" id="deleteEmployeeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Employee</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <p>Employee to be deleted.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal" type="button" (click)="deleteEmployee()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Employee Modal -->
+<app-employees-add-modal></app-employees-add-modal>
+
+<!-- Edit Employee Modal -->
+<div aria-hidden="true" class="modal fade" id="editEmployeeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editEmployeeForm" (ngSubmit)="onUpdate()" class="row g-3">
+          <div class="col-md-12">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-control" id="firstName" type="text" formControlName="firstName">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" type="text" formControlName="lastName">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label" for="role">Role</label>
+            <select class="form-select" formControlName="role" id="role">
+              <option *ngFor="let role of roles; let i = index" [ngValue]="role"
+                      [selected]="i">{{role.name}}</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button class="btn btn-primary" data-bs-dismiss="modal" type="submit">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
