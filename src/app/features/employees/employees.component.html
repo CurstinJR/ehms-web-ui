@@ -1,140 +1,103 @@
-<div class="container-fluid">
-
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Employee Information</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<div class="shadow bg-body rounded p-5 m-5">
+  <div class="d-flex justify-content-between">
+    <p class="fs-3 fw-semibold">Employees</p>
+    <div>
+      <button class="btn btn-success px-4 mx-3" data-bs-target="#addEmployeeModal" data-bs-toggle="modal">
+        Add Employee
       </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addEmployee" type="submit">Add Employee</button>
-      </div>
+      <button class="btn btn-danger px-4" data-bs-target="#deleteEmployeeModal" data-bs-toggle="modal">
+        Delete
+      </button>
     </div>
-  </nav>
-
-
-
-  <table class="table table-hover">
+  </div>
+  <table class="table table-borderless table-sm">
     <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">First Name</th>
-      <th scope="col">Last Name</th>
+      <th scope="col"></th>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
       <th scope="col">Role</th>
-      <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let employee of empList">
-      <td>{{employee.id}}</td>
-      <td>{{employee.firstname}}</td>
-      <td>{{employee.lastname}}</td>
-      <td>{{employee.roleId}}</td>
+    <tr *ngFor="let employee of employees">
+      <div>
+        <input (change)="getEmployee(employee)" [value]="employee.id" class="form-check-input" id="selectCheckbox"
+               type="checkbox">
+      </div>
+      <th scope="row">{{employee.id}}</th>
+      <td>{{employee.firstName}}</td>
+      <td>{{employee.lastName}}</td>
+      <td>{{employee.role.name}}</td>
       <td>
-        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editEmployee" (click)="editEmployee(employee)">Edit</button>
-        <button type="button" class="btn btn-outline-danger" (click)="deleteEmployee(employee)">Delete</button>
+        <!--Edit Icon-->
+        <fa-icon (click)="populateEmployee(employee)"
+                 [icon]="editIcon.icon"
+                 [size]="editIcon.size"
+                 class="btn text-secondary"
+                 data-bs-target="#editEmployeeModal"
+                 data-bs-toggle="modal">
+        </fa-icon>
       </td>
-
     </tr>
-
     </tbody>
   </table>
+</div>
 
-
-  <!-- Add employee modal -->
-  <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="employeeModalLabel">Add new Employee</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form [formGroup]="empDetail">
-            <div class="mb-3">
-              <label for="Name" class="form-label">First Name </label>
-              <input type="text" formControlName="name" class="form-control" id="name" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Lastname" class="form-label">Last Name </label>
-              <input type="text" formControlName="lastname" class="form-control" id="lastname" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Role" class="form-label">Role </label>
-              <input type="text" formControlName="role" class="form-control" id="role" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Email" class="form-label">Email </label>
-              <input type="text" formControlName="role" class="form-control" id="email" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Password" class="form-label">Password </label>
-              <input type="text" formControlName="role" class="form-control" id="password" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="PhoneNumber" class="form-label">Phone Number </label>
-              <input type="text" formControlName="role" class="form-control" id="phonenumber" aria-describedby="emailHelp">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addEmployee()">Add employee</button>
-            </div>
-          </form>
-
-        </div>
-
+<!--Delete Modal-->
+<div aria-hidden="true" aria-labelledby="deleteModalLabel" class="modal fade" id="deleteEmployeeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel">Delete Employee</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <p>Employee to be deleted.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+        <button class="btn btn-danger" data-bs-dismiss="modal" type="button" (click)="deleteEmployee()">Delete</button>
       </div>
     </div>
   </div>
+</div>
 
+<!-- Add Employee Modal -->
+<app-employees-add-modal></app-employees-add-modal>
 
-  <!-- Edit employee modal -->
-  <div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="employeeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Employee Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-
-          <form [formGroup]="empDetail">
-            <div class="mb-3">
-              <label for="Name" class="form-label">First Name </label>
-              <input type="text" formControlName="name" class="form-control" id="firstname" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Lastname" class="form-label">Last Name </label>
-              <input type="text" formControlName="lastname" class="form-control" id="lname" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Role" class="form-label">Role </label>
-              <input type="text" formControlName="role" class="form-control" id="roleId" aria-describedby="emailHelp">
-            </div>
-
-            <div class="mb-3">
-              <label for="Email" class="form-label">Email </label>
-              <input type="text" formControlName="role" class="form-control" id="mail" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="Password" class="form-label">Password </label>
-              <input type="text" formControlName="role" class="form-control" id="pass" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label for="PhoneNumber" class="form-label">Phone Number </label>
-              <input type="text" formControlName="role" class="form-control" id="number" aria-describedby="emailHelp">
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-outline-success" (click)="updateEmployee()" data-bs-dismiss="modal">Update </button>
-            </div>
-          </form>
-
-        </div>
+<!-- Edit Employee Modal -->
+<div aria-hidden="true" class="modal fade" id="editEmployeeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Employee</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editEmployeeForm" (ngSubmit)="onUpdate()" class="row g-3">
+          <div class="col-md-12">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-control" id="firstName" type="text" formControlName="firstName">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-control" id="lastName" type="text" formControlName="lastName">
+          </div>
+          <div class="col-md-12">
+            <label class="form-label" for="role">Role</label>
+            <select class="form-select" formControlName="role" id="role">
+              <option *ngFor="let role of roles; let i = index" [ngValue]="role"
+                      [selected]="i">{{role.name}}</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button class="btn btn-primary" data-bs-dismiss="modal" type="submit">Save changes</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
-
 </div>

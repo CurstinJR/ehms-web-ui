@@ -1,42 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Employee } from '../models/employee.model';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {EmployeeModel} from '../models/employee.model';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  addEmpURL : string;
-  getEmpURL : string;
-  updateEmpUrl : string;
-  deleteEmpUrl : string;
+  public api: string;
 
-  constructor(private http : HttpClient) {
-
-    this.addEmpURL = 'http://localhost:63342/emp/addEmployee';
-    this.getEmpURL = 'http://localhost:63342/emp/getAll';
-    this.updateEmpUrl = 'http://localhost:63342/emp/updateEmployee';
-    this.deleteEmpUrl = 'http://localhost:63342/emp/deleteEmployeeById';
-
+  constructor(private http: HttpClient) {
+    this.api = `${environment.api}`;
   }
 
-  addEmployee(emp : Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.addEmpURL,emp);
+  save(emp: EmployeeModel): Observable<EmployeeModel> {
+    return this.http.post<EmployeeModel>(`${this.api}/employees`, emp);
   }
 
-  getAllEmployee(): Observable<Employee[]>{
-    return this.http.get<Employee[]>(this.getEmpURL);
+  getAllEmployee(): Observable<EmployeeModel[]> {
+    return this.http.get<EmployeeModel[]>(`${this.api}/employees`);
   }
 
-  updateEmployee(emp :Employee) : Observable<Employee>{
-    return this.http.put<Employee>(this.updateEmpUrl, emp);
+  updateEmployee(id: number, emp: EmployeeModel): Observable<EmployeeModel> {
+    return this.http.put<EmployeeModel>(`${this.api}/employees/${id}`, emp);
   }
 
-  deleteEmployee(emp : Employee) : Observable<Employee> {
-    return this.http.delete<Employee>(this.deleteEmpUrl+'/'+emp.id);
+  deleteEmployee(id: number): Observable<EmployeeModel> {
+    return this.http.delete<EmployeeModel>(`${this.api}/employees/${id}`);
   }
-
-
 }

@@ -1,0 +1,35 @@
+<div aria-hidden="true" class="modal fade" id="addEmployeeModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Employee</h1>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addEmployeeForm">
+          <div class="mb-3">
+            <label class="form-label" for="firstName">First Name</label>
+            <input class="form-control" formControlName="firstName" id="firstName" type="text">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="lastName">Last Name</label>
+            <input class="form-control" formControlName="lastName" id="lastName" type="text">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="role">Role</label>
+            <select class="form-select" formControlName="role" id="role">
+              <option *ngFor="let role of roles; let i = index" [ngValue]="role"
+                      [selected]="i">{{role.name}}</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button [disabled]="!addEmployeeForm.valid" class="btn btn-primary" data-bs-dismiss="modal"
+                    type="submit">Save changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

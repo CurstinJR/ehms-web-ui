@@ -1,9 +1,8 @@
-export class Employee {
-  id : number=0;
-  firstname : string='';
-  lastname : string='';
-  roleId :number =0;
-  email: string='';
-  password: string='';
-  phonenumber: string='';
+import {RoleModel} from "./role.model";
+
+export class EmployeeModel {
+  id: number;
+  firstName: string;
+  lastName: string;
+  role: RoleModel;
 }
