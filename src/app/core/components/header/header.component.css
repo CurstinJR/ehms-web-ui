@@ -1,3 +1,8 @@
 .header-items {
   margin-left: 70px;
 }
+
+.dropdown-logout:hover {
+  background-color: #dc3545;
+  color: white !important;
+}

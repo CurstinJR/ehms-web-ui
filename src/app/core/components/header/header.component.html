@@ -3,20 +3,8 @@
     <div>
       <a class="fs-3 fw-semibold link-dark" routerLink="">Dashboard</a>
     </div>
-    <ng-container *ngIf="isUserLoggedIn">
-      <div class="dropdown pe-5">
-        <fa-icon [icon]="profile.icon" [size]="profile.size" aria-expanded="false" data-bs-toggle="dropdown"
-                 role="button">
-        </fa-icon>
-        <ul class="dropdown-menu dropdown-menu-lg-end">
-          <li>
-            <a class="dropdown-item" role="button" routerLink="/user-profile">View Profile</a>
-          </li>
-          <li>
-            <a (click)="onLogout()" class="dropdown-item text-danger dropdown-logout" role="button">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </ng-container>
+    <div class="pe-5" *ngIf="isUserLoggedIn">
+      <button class="btn btn-outline-danger" (click)="onLogout()">Logout</button>
+    </div>
   </div>
 </div>
