@@ -6,18 +6,18 @@
         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
       </div>
       <div class="modal-body">
-        <form #addAppointmentForm="ngForm" (ngSubmit)="onSubmit(addAppointmentForm)">
+        <form [formGroup]="addAppointmentForm" (ngSubmit)="onSubmit()">
           <div class="mb-3">
             <label class="form-label" for="time">Time</label>
-            <input class="form-control" id="time" type="time">
+            <input class="form-control" id="time" type="time" formControlName="time">
           </div>
           <div class="mb-3">
             <label class="form-label" for="date">Date</label>
-            <input class="form-control" id="date" type="date">
+            <input class="form-control" id="date" type="date" formControlName="date">
           </div>
           <div class="mb-3">
             <label class="form-label" for="patient">Patient</label>
-            <select class="form-select" id="patient">
+            <select class="form-select" id="patient" formControlName="patient">
               <option *ngFor="let patient of patients$; let i = index" [ngValue]="patient"
                       [selected]="i">{{patient.firstName}}</option>
             </select>

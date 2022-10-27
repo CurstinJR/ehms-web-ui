@@ -19,7 +19,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     PatientsRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule
-  ]
+  ],
 })
 export class PatientsModule {
 }

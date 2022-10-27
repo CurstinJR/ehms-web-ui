@@ -13,13 +13,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     AppointmentsComponent,
     AppointmentAddModalComponent
   ],
-    imports: [
-        CommonModule,
-        AppointmentsRoutingModule,
-        FontAwesomeModule,
-        ReactiveFormsModule,
-        FormsModule
-    ]
+  imports: [
+    CommonModule,
+    AppointmentsRoutingModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FormsModule
+  ]
 })
 export class AppointmentsModule {
 }

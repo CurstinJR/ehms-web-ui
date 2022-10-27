@@ -1,7 +1,7 @@
 import {PatientModel} from "./patient.model";
 
 export class AppointmentModel {
-  appointmentId?: number;
+  appointmentId: number;
   appointmentTime: string;
   appointmentDate: string;
   patient: PatientModel;

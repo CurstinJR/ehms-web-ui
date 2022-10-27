@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {PatientsService} from "../../services/patients.service";
 import {PatientModel} from "../../models/patient.model";
 import {VitalModel} from "../../models/vital.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-patient-add-modal',
@@ -25,7 +26,8 @@ export class PatientsAddModalComponent implements OnInit {
   patients: PatientModel[];
 
   constructor(private formBuilder: FormBuilder,
-              private patientsService: PatientsService) {
+              private patientsService: PatientsService,
+              private toastrService: ToastrService) {
     this.patient.vitals = new VitalModel();
   }
 
@@ -49,11 +51,12 @@ export class PatientsAddModalComponent implements OnInit {
   onSubmit() {
     this.patientsService.add(this.buildPatient()).subscribe({
       error: (err: any) => console.log(err),
-      complete: () => {
-      }
+      complete: () => this.toastrService.success(
+        `Patient ${this.buildPatient().firstName} added`,
+        "Record saved")
     });
     setTimeout(() => {
       window.location.reload();
-    }, 500);
+    }, 1300);
   }
 }

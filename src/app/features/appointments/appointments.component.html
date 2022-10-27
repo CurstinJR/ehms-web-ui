@@ -19,9 +19,10 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let appointment of appointments$">
+    <tr *ngFor="let appointment of appointments">
       <div>
-        <input class="form-check-input" id="selectCheckbox" type="checkbox" value="">
+        <input class="form-check-input" id="selectCheckbox" type="checkbox" value=""
+               (change)="getAppointment(appointment)">
       </div>
       <th scope="row">{{appointment.appointmentId}}</th>
       <td>{{appointment.appointmentTime}}</td>
@@ -33,7 +34,8 @@
 </div>
 
 <!--Delete Modal-->
-<div aria-hidden="true" aria-labelledby="deleteModalLabel" class="modal fade" id="deleteModal" tabindex="-1">
+<div aria-hidden="true" aria-labelledby="deleteModalLabel" data-bs-dismiss="modal" class="modal fade" id="deleteModal"
+     tabindex="-1">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -45,7 +47,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-        <button class="btn btn-danger" type="button">Delete</button>
+        <button class="btn btn-danger" type="button" (click)="deleteAppointment()">Delete</button>
       </div>
     </div>
   </div>

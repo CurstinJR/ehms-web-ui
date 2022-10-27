@@ -5,6 +5,7 @@ import {AppIcon} from "../../core/_models/app-icon.model";
 import {faEye, faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import {FormBuilder, Validators} from "@angular/forms";
 import {VitalModel} from "../models/vital.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-patient',
@@ -36,7 +37,8 @@ export class PatientsComponent implements OnInit {
   }
 
   constructor(private patientsService: PatientsService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private toastrService: ToastrService) {
     this.patient.vitals = new VitalModel();
   }
 
@@ -67,24 +69,35 @@ export class PatientsComponent implements OnInit {
   }
 
   onUpdate() {
-    this.patientsService.updateById(this.patientEditId, this.buildPatient()).subscribe({
-      error: (err: any) => console.log(err),
-      complete: () => {
-      }
-    });
-    setTimeout(() => {
-      window.location.reload();
-    }, 500);
-  }
-
-  deletePatient() {
-    this.patientsService.deleteById(this.patient.id)
+    this.patientsService.updateById(this.patientEditId, this.buildPatient())
       .subscribe({
-        error: (err) => console.log(err),
+        error: (err: any) => this.toastrService.error(err, "Error"),
+        complete: () => {
+          this.toastrService.success(
+            `Patient ${this.buildPatient().firstName} record successfully updated!`,
+            'Record Updated')
+        }
       });
     setTimeout(() => {
       window.location.reload();
-    }, 500);
+    }, 1300);
+  }
+
+  deletePatient() {
+    if (this.patient.id == undefined) {
+      this.toastrService.warning("Please select a record to delete", "No Record Found");
+    } else {
+      this.patientsService.deleteById(this.patient.id)
+        .subscribe({
+          error: (err) => this.toastrService.error(err),
+          complete: () => this.toastrService.success(
+            `Successfully deleted ${this.patient.firstName}`,
+            "Record Deleted"),
+        });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1300);
+    }
   }
 
   populatePatient(patient: PatientModel) {

@@ -24,7 +24,7 @@ export class AppointmentsService {
     return this.http.get<AppointmentModel>(`${this.api}/appointments/${id}`);
   }
 
-  add(appointment: AppointmentModel) {
+  save(appointment: AppointmentModel) {
     return this.http.post<AppointmentModel>(`${this.api}/appointments`, appointment);
   }
 

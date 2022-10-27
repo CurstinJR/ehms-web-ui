@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {PatientModel} from "../../models/patient.model";
 import {PatientsService} from "../../services/patients.service";
-import {FormBuilder, NgForm, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {AppointmentsService} from "../../services/appointments.service";
+import {AppointmentModel} from "../../models/appointment.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-appointment-add-modal',
@@ -13,14 +15,18 @@ export class AppointmentAddModalComponent implements OnInit {
 
   patients$: PatientModel[];
   addAppointmentForm = this.formBuilder.group({
-    time: ['', Validators.required],
-    date: ['', Validators.required],
-    patient: ['', Validators.required]
+    time: new FormControl<string>('', {nonNullable: true, validators: Validators.required}),
+    date: new FormControl<string>('', {nonNullable: true, validators: Validators.required}),
+    patient: new FormControl<PatientModel>(new PatientModel(), {
+      nonNullable: true,
+      validators: Validators.required
+    })
   });
 
   constructor(private formBuilder: FormBuilder,
               private patientsService: PatientsService,
-              private appointmentService: AppointmentsService) {
+              private appointmentService: AppointmentsService,
+              private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -35,7 +41,22 @@ export class AppointmentAddModalComponent implements OnInit {
       });
   }
 
-  onSubmit(addAppointmentForm: NgForm) {
-    console.log(addAppointmentForm.value);
+  onSubmit() {
+    const appointment: AppointmentModel = {
+      appointmentId: 0,
+      appointmentTime: this.addAppointmentForm.getRawValue().time,
+      appointmentDate: this.addAppointmentForm.getRawValue().date,
+      patient: this.addAppointmentForm.getRawValue().patient
+    }
+    this.appointmentService.save(appointment)
+      .subscribe({
+        error: (err) => this.toastrService.error(err),
+        complete: () => this.toastrService.success(
+          `Appointment booked for ${appointment.patient.firstName}`,
+          "Appointment booked")
+      });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1300);
   }
 }

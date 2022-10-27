@@ -58,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-        <button (click)="deletePatient()" class="btn btn-danger" type="button">Delete</button>
+        <button (click)="deletePatient()" data-bs-dismiss="modal" class="btn btn-danger" type="button">Delete</button>
       </div>
     </div>
   </div>
@@ -106,7 +106,9 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-            <button [disabled]="!editPatientForm.valid" class="btn btn-primary" type="submit">Save changes</button>
+            <button [disabled]="!editPatientForm.valid" class="btn btn-primary" data-bs-dismiss="modal" type="submit">
+              Save changes
+            </button>
           </div>
         </form>
       </div>
