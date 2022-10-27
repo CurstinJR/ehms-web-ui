@@ -1,10 +1,9 @@
 export class Employee {
-  id: number;
-  firstName: string ;
-  lastName: string ;
-  userRole: role;
-  logindetails: LoginCredentials;
-  contactdetails: ContactDetails
-
-
+  id : number=0;
+  firstname : string='';
+  lastname : string='';
+  roleId :number =0;
+  email: string='';
+  password: string='';
+  phonenumber: string='';
 }
