@@ -58,7 +58,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-        <button class="btn btn-danger" data-bs-dismiss="modal" type="button" (click)="deleteEmployee()">Delete</button>
+        <button (click)="deleteEmployee()" class="btn btn-danger" data-bs-dismiss="modal" type="button">Delete</button>
       </div>
     </div>
   </div>
@@ -76,14 +76,14 @@
         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
       </div>
       <div class="modal-body">
-        <form [formGroup]="editEmployeeForm" (ngSubmit)="onUpdate()" class="row g-3">
+        <form (ngSubmit)="onUpdate()" [formGroup]="editEmployeeForm" class="row g-3">
           <div class="col-md-12">
             <label class="form-label" for="firstName">First Name</label>
-            <input class="form-control" id="firstName" type="text" formControlName="firstName">
+            <input class="form-control" formControlName="firstName" id="firstName" type="text">
           </div>
           <div class="col-md-12">
             <label class="form-label" for="lastName">Last Name</label>
-            <input class="form-control" id="lastName" type="text" formControlName="lastName">
+            <input class="form-control" formControlName="lastName" id="lastName" type="text">
           </div>
           <div class="col-md-12">
             <label class="form-label" for="role">Role</label>

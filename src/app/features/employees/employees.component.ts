@@ -6,6 +6,7 @@ import {AppIcon} from "../../core/_models/app-icon.model";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import {RoleModel} from "../models/role.model";
 import {RolesService} from "../services/roles.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-employees',
@@ -30,7 +31,8 @@ export class EmployeesComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private employeeService: EmployeeService,
-              private rolesService: RolesService) {
+              private rolesService: RolesService,
+              private toastrService: ToastrService) {
     this.employee.role = new RoleModel();
   }
 
@@ -43,7 +45,7 @@ export class EmployeesComponent implements OnInit {
     this.employeeService.getAllEmployee()
       .subscribe({
         next: (data) => this.employees = data,
-        error: (err) => console.log(err),
+        error: (err) => this.toastrService.error(err.error.message, "Error"),
       });
   }
 

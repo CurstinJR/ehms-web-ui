@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -8,9 +8,11 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ViewPrescriptionComponent implements OnInit {
 
-  constructor(private activeRoute:ActivatedRoute) { }
+  id: string
 
-  id:string
+  constructor(private activeRoute: ActivatedRoute) {
+  }
+
   ngOnInit(): void {
     this.activeRoute.params.subscribe(params => {
       this.id = params['id']

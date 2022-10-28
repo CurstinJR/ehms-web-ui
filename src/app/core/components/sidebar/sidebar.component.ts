@@ -5,6 +5,7 @@ import {
   faGrip,
   faHospitalUser,
   faImagePortrait,
+  faPrescriptionBottleMedical,
   faUserDoctor,
   faWallet
 } from "@fortawesome/free-solid-svg-icons";
@@ -44,7 +45,7 @@ export class SidebarComponent implements OnInit {
       name: "Roles"
     },
     {
-      icon: faImagePortrait,
+      icon: faPrescriptionBottleMedical,
       name: "Prescription"
     },
   ];

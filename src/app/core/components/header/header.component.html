@@ -3,8 +3,8 @@
     <div>
       <a class="fs-3 fw-semibold link-dark" routerLink="">Dashboard</a>
     </div>
-    <div class="pe-5" *ngIf="isUserLoggedIn">
-      <button class="btn btn-outline-danger" (click)="onLogout()">Logout</button>
+    <div *ngIf="isUserLoggedIn" class="pe-5">
+      <button (click)="onLogout()" class="btn btn-outline-danger">Logout</button>
     </div>
   </div>
 </div>

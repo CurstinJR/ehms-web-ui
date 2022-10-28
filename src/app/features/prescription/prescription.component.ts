@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControl, FormGroup} from "@angular/forms";
 
@@ -13,18 +13,22 @@ export class PrescriptionComponent implements OnInit {
     prescriptionNumber: new FormControl(''),
     name: new FormControl(''),
     price: new FormControl(''),
-    description:new FormControl(''),
+    description: new FormControl(''),
     type: new FormControl('')
   })
-  constructor(private route:Router) { }
+
+  constructor(private route: Router) {
+  }
 
 
   ngOnInit(): void {
   }
-  view(prescriptionNumber: string){
-    this.route.navigate(['prescription/view/'+prescriptionNumber])
+
+  view(prescriptionNumber: string) {
+    this.route.navigate(['prescription/view/' + prescriptionNumber])
   }
-  onsubmit(){
+
+  onsubmit() {
     console.warn(this.prescriptionForm.value)
   }
 

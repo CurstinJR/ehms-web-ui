@@ -12,6 +12,7 @@ import {LayoutsModule} from "./core/components/layouts/layouts.module";
 import {OverviewComponent} from './features/overview/overview.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ToastrModule} from "ngx-toastr";
+import {CacheInterceptor} from "./core/utils/auth/cache.interceptor";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {ToastrModule} from "ngx-toastr";
     })
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true}
   ],
   exports: [],
   bootstrap: [AppComponent]

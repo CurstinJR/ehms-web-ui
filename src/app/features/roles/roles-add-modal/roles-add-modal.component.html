@@ -1,0 +1,28 @@
+<div aria-hidden="true" aria-labelledby="addRoleModalLabel" class="modal fade" id="addRoleModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addRoleModalLabel">New Role</h5>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addRoleForm">
+          <div class="mb-3">
+            <label class="form-label" for="name">Role Name</label>
+            <input class="form-control" formControlName="name" id="name" type="text">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <textarea class="form-control" formControlName="description" id="description" rows="3"></textarea>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+            <button [disabled]="!addRoleForm.valid" class="btn btn-primary" data-bs-dismiss="modal" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
